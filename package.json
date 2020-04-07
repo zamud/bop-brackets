@@ -1,0 +1,42 @@
+{
+  "name": "bop-brackets",
+  "version": "1.0.0",
+  "description": "Uses the Last.FM Web API to build a bracket of an artist's most popular songs.  From there, users embrace debate.",
+  "main": "./app/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "set PORT=8000 && react-scripts start",
+    "build": "react-scripts build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zamud/bop-brackets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zamud/bop-brackets/issues"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^1.6.8",
+    "axios": "^0.19.2",
+    "node-rest-client": "^3.1.0",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

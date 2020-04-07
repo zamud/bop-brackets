@@ -1,0 +1,4 @@
+node_modules/
+build/
+src/api/key.js
+package-lock.json
