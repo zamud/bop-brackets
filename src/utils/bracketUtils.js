@@ -24,10 +24,11 @@ const createMatchups = (seedsArray) => {
       var highSeedIndex = Math.floor(Math.random() * highSeeds.length);
       var lowSeedIndex = Math.floor(Math.random() * lowSeeds.length);
 
-      var highSeedTrack = highSeeds[highSeedIndex];
-      var lowSeedTrack = lowSeeds[lowSeedIndex];
+      var regionNum = matchupId % 4;
+      var highSeedTrack = addSeedAndTrim(highSeeds[highSeedIndex], highSeed+1, regionNum);
+      var lowSeedTrack = addSeedAndTrim(lowSeeds[lowSeedIndex], lowSeed+1, regionNum);
 
-      matchupMap.set(matchupId, [matchupId % 4, highSeedTrack, lowSeedTrack]);
+      matchupMap.set(matchupId, [regionNum, highSeedTrack, lowSeedTrack]);
 
       highSeeds.splice(highSeedIndex, 1);
       lowSeeds.splice(lowSeedIndex, 1);
@@ -41,24 +42,46 @@ const createMatchups = (seedsArray) => {
   return matchupMap
 }
 
-const addRegions = (matchups) => {
-  const matchupsWithRegions = new Map();
-  var i;
+const addSeedAndTrim = (track, seed, regionNum) => {
+  var seededTrimmedTrack = track.name;
+  var seedStr = `[${seed}]`;
 
-  while(i < matchups.size) {
-    var matchup = matchups.get(i);
-    matchup.push(i % 4);
-    matchupsWithRegions.set(i, matchup);
-    i++;
+  if(seededTrimmedTrack.length > 24) {
+    seededTrimmedTrack = seededTrimmedTrack.substring(0,21);
+    seededTrimmedTrack = seededTrimmedTrack.concat('...');
   }
 
-  return matchupsWithRegions;
+  if(regionNum < 2) {
+    seededTrimmedTrack = seedStr.concat(` ${seededTrimmedTrack}`);
+  } else {
+    seededTrimmedTrack = seededTrimmedTrack.concat(` ${seedStr}`);
+  }
+  
+  return seededTrimmedTrack;
+}
+
+const orderMatchups = (matchups) => {
+  var region0Matchups = orderRegion(matchups, 0);
+  var region1Matchups = orderRegion(matchups, 1);
+  var region2Matchups = orderRegion(matchups, 2);
+  var region3Matchups = orderRegion(matchups, 3);
+
+  var orderedMatchups = [region0Matchups, region1Matchups, region2Matchups, region3Matchups];
+  
+  return orderedMatchups;
+}
+
+var orderRegion = (matchups, regionNum) => {
+  var regionMatchups = Array.from(matchups.values()).filter(matchup => matchup[0] % 4 === regionNum);
+  var orderedRegionMatchups = [regionMatchups[0], regionMatchups[3], regionMatchups[2], regionMatchups[1]];
+  
+  return orderedRegionMatchups;
 }
 
 const bracketUtils = {
   seedBracket,
   createMatchups,
-  addRegions
+  orderMatchups
 }
 
 export default bracketUtils;

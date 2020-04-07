@@ -117,10 +117,7 @@ const TopTracksBracket32 = ({tracks}) => {
 
   var seedsArray = bracketUtils.seedBracket(tracks);
   var matchups = bracketUtils.createMatchups(seedsArray);
-  var topLeftMatchups = Array.from(matchups.values()).filter(matchup => matchup[0] % 4 === 0);
-  var bottomLeftMatchups = Array.from(matchups.values()).filter(matchup => matchup[0] % 4 === 1);
-  var topRightMatchups = Array.from(matchups.values()).filter(matchup => matchup[0] % 4 === 2);
-  var bottomRightMatchups = Array.from(matchups.values()).filter(matchup => matchup[0] % 4 === 3);
+  var orderedMatchups = bracketUtils.orderMatchups(matchups);
 
   return (
     <div>
@@ -129,11 +126,11 @@ const TopTracksBracket32 = ({tracks}) => {
           <Page size="A4" orientation='landscape' style={styles.page}>
             <View style={styles.leftBracket}>
               { matchups
-                ? <PDFLeftBracketRegion matchups={topLeftMatchups} />
+                ? <PDFLeftBracketRegion matchups={orderedMatchups[0]} />
                 : null
               }
               { matchups
-                ? <PDFLeftBracketRegion matchups={bottomLeftMatchups} />
+                ? <PDFLeftBracketRegion matchups={orderedMatchups[1]} />
                 : null
               }
             </View>
@@ -167,11 +164,11 @@ const TopTracksBracket32 = ({tracks}) => {
             </View>
             <View style={styles.rightBracket}>
               { matchups
-                ? <PDFRightBracketRegion matchups={topRightMatchups} />
+                ? <PDFRightBracketRegion matchups={orderedMatchups[2]} />
                 : null
               }
               { matchups
-                ? <PDFRightBracketRegion matchups={bottomRightMatchups} />
+                ? <PDFRightBracketRegion matchups={orderedMatchups[3]} />
                 : null
               }
             </View>

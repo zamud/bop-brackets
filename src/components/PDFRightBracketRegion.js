@@ -27,8 +27,8 @@ const PDFRightBracketRegion = ({matchups}) => {
         ? matchups.map((matchup) => {
             return (
               <View style={styles.matchup} key={matchups.indexOf(matchup)}>
-                <Text style={styles.topSong}>{matchup[1].name}</Text>
-                <Text style={styles.bottomSongRight}>{matchup[2].name}</Text>
+                <Text style={styles.topSong}>{matchup[1]}</Text>
+                <Text style={styles.bottomSongRight}>{matchup[2]}</Text>
               </View>
             )
           })
