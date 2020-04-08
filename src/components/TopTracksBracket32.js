@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+import { Page, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 import bracketUtils from '../utils/bracketUtils';
 import PDFLeftBracketRegion from './PDFLeftBracketRegion';
 import PDFRightBracketRegion from './PDFRightBracketRegion';
