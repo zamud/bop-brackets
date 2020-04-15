@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import TopTracksForm from '../components/TopTracksForm';
-import TopTracksBracket32 from '../components/TopTracksBracket32';
+import BopBracketsFormAndControls from '../components/bop-brackets/BopBracketsFormAndControls';
+import BopBracketsHeader from '../components/bop-brackets/BopBracketsHeader';
+import PDFBracket from '../components/pdf/PDFBracket';
+import FillBracket from '../components/fill-in/FillBracket';
 import api, { BASE_URL } from '../api/index';
+import bracketUtils from '../utils/bracketUtils';
 import styled from 'styled-components';
 
 const CenteredRow = styled.div.attrs({
@@ -16,6 +19,7 @@ class App extends Component {
     this.state = {
       artist: "",
       topTracks: [],
+      orderedMatchups: [],
       errorOccurred: false,
       bracketMode: ""
     }
@@ -34,8 +38,12 @@ class App extends Component {
             errorOccurred: true
           })
         } else {
+          var seedsArray = bracketUtils.seedBracket(response.data.toptracks.track)
+          var matchups = bracketUtils.createMatchups(seedsArray)
+          var orderedMatchups = bracketUtils.orderMatchups(matchups)
           this.setState({
             topTracks: response.data.toptracks.track,
+            orderedMatchups: orderedMatchups,
             errorOccurred: false
           });
         }
@@ -66,66 +74,49 @@ class App extends Component {
   render() {
     return (
       <div className='container pt-2'>
-        <CenteredRow>
+        <BopBracketsHeader />
+        <CenteredRow className='mt-4 mb-4'>
           <div className='col'>
-            <h2>Bop Brackets</h2>
-          </div>
-        </CenteredRow>
-        <CenteredRow>
-          <div className='col'>
-            <strong>Enter an artist.  Build a bracket.  Crown the top track.</strong>
-          </div>
-        </CenteredRow>
-        <CenteredRow className='mt-4'>
-          <div className='col'>
-            <TopTracksForm 
+            <BopBracketsFormAndControls 
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
+              handleStartFromScratch={this.handleStartFromScratch}
+              handleModeChange={this.handleModeChange}
               artist={this.state.artist}
-              tracks={this.state.topTracks} />
-          </div>
-        </CenteredRow>
-        <CenteredRow className='mt-4'>
-          <div className='col'>
-            {
-              this.state.topTracks.length > 0
-              ? <button type='button' value='printMode' className='btn btn-secondary btn-lg btn-block' onClick={this.handleModeChange}>Print it Out</button>
-              : <button type='button' value='printMode' className='btn btn-secondary btn-lg btn-block' disabled>Print it Out</button>
-            }
-          </div>
-          <div className='col'>
-            {
-              this.state.topTracks.length > 0
-              ? <button type='button' value='fillMode' className='btn btn-secondary btn-lg btn-block' onClick={this.handleModeChange}>Fill it In</button>
-              : <button type='button' value='fillMode' className='btn btn-secondary btn-lg btn-block' disabled>Fill it In</button>
-            }
-          </div>
-          <div className='col'>
-            {
-              this.state.topTracks.length > 0
-              ? <button type='button' className='btn btn-danger btn-lg btn-block' onClick={this.handleStartFromScratch}>Start from Scratch</button>
-              : <button type='button' className='btn btn-danger btn-lg btn-block' disabled>Start from Scratch</button>
-            }
+              tracks={this.state.topTracks}
+              errorOccurred={this.state.errorOccurred} />
           </div>
         </CenteredRow>
         {
-          this.state.errorOccurred
-          ? <CenteredRow className='mt-2'>
-              <div className='col-md-4 offset-md-4'>
-                <div className='alert alert-warning'>
-                  <strong>Error!</strong>  Unable to generate a bracket.  Confirm the artist name and try again.
-                </div>
+          this.state.topTracks.length === 0 && this.state.bracketMode === ''
+          ? <CenteredRow className='mt-5'>
+              <div className='col alert alert-secondary'>
+                <h4>Welcome to Bop Brackets.  Enter an artist and generate a bracket to start.</h4>
               </div>
             </CenteredRow>
-          : null
+          : null      
+        }
+        {
+          this.state.topTracks.length > 0 && this.state.bracketMode === ''
+          ? <CenteredRow className='mt-5'>
+              <div className='col alert alert-success'>
+                <h4>Your bracket is ready.  Choose an option above to continue.</h4>
+              </div>
+            </CenteredRow>
+          : null      
         }
         {
           this.state.topTracks.length > 0 && this.state.bracketMode === 'printMode'
-          ? <CenteredRow className='mt-4'>
+          ? <CenteredRow>
               <div className='col'>
-                <TopTracksBracket32 tracks={this.state.topTracks} />
+                <PDFBracket matchups={this.state.orderedMatchups} />
               </div>
             </CenteredRow>
+          : null      
+        }
+        {
+          this.state.topTracks.length > 0 && this.state.bracketMode === 'fillMode'
+          ? <FillBracket matchups={this.state.orderedMatchups} />
           : null      
         }
       </div>

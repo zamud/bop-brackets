@@ -19,19 +19,18 @@ const createMatchups = (seedsArray) => {
   while(highSeed < lowSeed) {
     var highSeeds = seedsArray[highSeed];
     var lowSeeds = seedsArray[lowSeed];
+    var highSeedIndex = 0;
+    var lowSeedIndex = lowSeeds.length-1;
 
-    while(highSeeds.length > 0) {
-      var highSeedIndex = Math.floor(Math.random() * highSeeds.length);
-      var lowSeedIndex = Math.floor(Math.random() * lowSeeds.length);
-
+    while(highSeedIndex < highSeeds.length) {
       var regionNum = matchupId % 4;
       var highSeedTrack = addSeedAndTrim(highSeeds[highSeedIndex], highSeed+1, regionNum);
       var lowSeedTrack = addSeedAndTrim(lowSeeds[lowSeedIndex], lowSeed+1, regionNum);
 
       matchupMap.set(matchupId, [regionNum, highSeedTrack, lowSeedTrack]);
 
-      highSeeds.splice(highSeedIndex, 1);
-      lowSeeds.splice(lowSeedIndex, 1);
+      highSeedIndex++;
+      lowSeedIndex--;
       matchupId++;
     }
 
@@ -51,11 +50,7 @@ const addSeedAndTrim = (track, seed, regionNum) => {
     seededTrimmedTrack = seededTrimmedTrack.concat('...');
   }
 
-  if(regionNum < 2) {
-    seededTrimmedTrack = seedStr.concat(` ${seededTrimmedTrack}`);
-  } else {
-    seededTrimmedTrack = seededTrimmedTrack.concat(` ${seedStr}`);
-  }
+  seededTrimmedTrack = seedStr.concat(` ${seededTrimmedTrack}`);
   
   return seededTrimmedTrack;
 }
