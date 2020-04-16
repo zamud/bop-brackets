@@ -123,7 +123,7 @@ class FillBracket extends Component {
           this.state.completed
           ? null
           : <div className='row'>
-              <div className='col-md-4'>
+              <div className='col-md-4 col-sm-12 col-12'>
                 <FillBracketFirstRoundRegion matchups={region0Matchups} regionId='0' handleSelect={this.handleSelect}/>
                 <FillBracketFirstRoundRegion matchups={region1Matchups} regionId='1' handleSelect={this.handleSelect}/>
                 <FillBracketFirstRoundRegion matchups={region2Matchups} regionId='2' handleSelect={this.handleSelect}/>

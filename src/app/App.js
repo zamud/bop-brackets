@@ -63,12 +63,14 @@ class App extends Component {
   }
 
   handleStartFromScratch = (event) => {
-    this.setState({
-      artist: "",
-      topTracks: [],
-      errorOccurred: false,
-      bracketMode: ""
-    });
+    if(window.confirm(`Are you sure?  This will clear everything you've submitted.`)) {
+      this.setState({
+        artist: "",
+        topTracks: [],
+        errorOccurred: false,
+        bracketMode: ""
+      });
+    }
   }
   
   render() {

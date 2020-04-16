@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Uses the Last.FM Web API to build a bracket of an artist's most popular songs.  From there, users embrace debate.",
   "main": "./app/index.js",
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.15.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "set PORT=8000 && react-scripts start",

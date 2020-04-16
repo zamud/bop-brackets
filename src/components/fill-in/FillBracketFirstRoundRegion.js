@@ -25,11 +25,11 @@ const FillBracketFirstRoundRegion = ({matchups, regionId, handleSelect}) => {
         matchups && matchups.map((matchup) => {
           return (
             <div className='row' key={`region${regionId}matchup${matchups.indexOf(matchup)}`}>
-              <BracketRound className='col-md-7'>
+              <BracketRound className='col-md-7 col-sm-6 col-6'>
                 <MatchupTop>{matchup[1]}</MatchupTop>
                 <MatchupBottom>{matchup[2]}</MatchupBottom>
               </BracketRound>
-              <BracketRound className='col-md-5'>
+              <BracketRound className='col-md-5 col-sm-6 col-6'>
                 <MatchupForm>
                     <select className='form-control' defaultValue='' id={`region${regionId}matchup${matchups.indexOf(matchup)}`} onChange={handleSelect}>
                       <option value='' disabled>Choose one..</option>
