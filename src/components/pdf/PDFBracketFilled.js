@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
 });
 
 const PDFBracketFilled = ({matchups, r16tracks, qfTracks, sfTracks, fTracks, champ}) => {
-  console.log(r16tracks);
   return (
     <PDFViewer width='90%' height='600px'>
       <Document>

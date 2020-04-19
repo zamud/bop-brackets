@@ -61,8 +61,8 @@ const orderMatchups = (matchups) => {
   var region2Matchups = orderRegion(matchups, 2);
   var region3Matchups = orderRegion(matchups, 3);
 
-  var orderedMatchups = [region0Matchups, region1Matchups, region2Matchups, region3Matchups];
-  
+  var orderedMatchups = [].concat(region0Matchups, region1Matchups, region2Matchups, region3Matchups);
+
   return orderedMatchups;
 }
 

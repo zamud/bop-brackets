@@ -92,7 +92,6 @@ const styles = StyleSheet.create({
 });
 
 const PDFBracket = ({matchups}) => {
-  var flattenedMatchups = [].concat(matchups[0], matchups[1], matchups[2], matchups[3]);
 
 return (
     <PDFViewer width='90%' height='600px'>
@@ -100,9 +99,9 @@ return (
         <Page size='legal' orientation='landscape' style={styles.page}>
           <View style={styles.roundOf32}>
             {
-              flattenedMatchups.map((matchup) => {
+              matchups.map((matchup) => {
                 return (
-                  <Fragment>
+                  <Fragment key={`r32_${matchups.indexOf(matchup)+1}`}>
                     <View style={styles.topSong}>
                       <Text>{matchup[1]}</Text>
                     </View>
@@ -118,7 +117,7 @@ return (
             {
               Array.from(Array(7).keys()).map((i) => {
                 return (
-                  <Fragment>
+                  <Fragment key={`r16_${i+1}`}>
                     <View style={styles.topSong} />
                     <View style={styles.r16Bottom} />
                   </Fragment>
@@ -132,7 +131,7 @@ return (
             {
               Array.from(Array(3).keys()).map((i) => {
                 return (
-                  <Fragment>
+                  <Fragment key={`qf_${i+1}`}>
                     <View style={styles.topSong} />
                     <View style={styles.r8Bottom} />
                   </Fragment>
