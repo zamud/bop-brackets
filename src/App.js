@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import BopBracketsFormAndControls from './components/bop-brackets/BopBracketsFormAndControls';
 import BopBracketsHeader from './components/bop-brackets/BopBracketsHeader';
 import PDFBracket from './components/pdf/PDFBracket';
 import FillBracket from './components/fill-in/FillBracket';
+import FillBracketMobile from './components/fill-in-mobile/FillBracketMobile';
 import api, { BASE_URL } from './api/index';
 import bracketUtils from './utils/bracketUtils';
 import styled from 'styled-components';
+import { BrowserView, MobileView } from 'react-device-detect';
 
 const CenteredRow = styled.div.attrs({
   className: 'row',
@@ -118,7 +120,14 @@ class App extends Component {
         }
         {
           this.state.topTracks.length > 0 && this.state.bracketMode === 'fillMode'
-          ? <FillBracket matchups={this.state.orderedMatchups} />
+          ? <Fragment>
+              <BrowserView>
+                <FillBracket matchups={this.state.orderedMatchups} />
+              </BrowserView>
+              <MobileView>
+                <FillBracketMobile matchups={this.state.orderedMatchups} />
+              </MobileView>
+            </Fragment>            
           : null      
         }
       </div>

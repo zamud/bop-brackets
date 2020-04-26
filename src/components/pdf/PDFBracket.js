@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
 
 const PDFBracket = ({matchups}) => {
 
-return (
+  return (
     <PDFViewer width='90%' height='600px'>
       <Document>
         <Page size='legal' orientation='landscape' style={styles.page}>
