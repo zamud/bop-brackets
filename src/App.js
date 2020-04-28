@@ -122,10 +122,10 @@ class App extends Component {
           this.state.topTracks.length > 0 && this.state.bracketMode === 'fillMode'
           ? <Fragment>
               <BrowserView>
-                <FillBracket matchups={this.state.orderedMatchups} />
+                <FillBracket artist={this.state.artist} matchups={this.state.orderedMatchups} />
               </BrowserView>
               <MobileView>
-                <FillBracketMobile matchups={this.state.orderedMatchups} />
+                <FillBracketMobile artist={this.state.artist} matchups={this.state.orderedMatchups} />
               </MobileView>
             </Fragment>            
           : null      

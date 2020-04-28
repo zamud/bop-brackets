@@ -3,6 +3,7 @@ import FillBracketMobileMatchup from './FillBracketMobileMatchup';
 import FillBracketMobileControls from './FillBracketMobileControls';
 import FillBracketChampCard from '../fill-in/FillBracketChampCard';
 import PDFBracketFilled from '../pdf/PDFBracketFilled';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 class FillBracketMobile extends Component {
   constructor(props) {
@@ -177,7 +178,19 @@ class FillBracketMobile extends Component {
               <FillBracketChampCard champ={c_1} />
               {
                 c_1 !== ''
-                ? <button className="btn btn-block btn-danger mt-4" onClick={this.handlePDFClick}>Generate PDF</button>
+                ? <PDFDownloadLink
+                      className='btn btn-lg btn-block btn-danger mt-2' 
+                      document={<PDFBracketFilled
+                                  matchups={matchups}
+                                  r16tracks={[r16_1, r16_2, r16_3, r16_4, r16_5, r16_6, r16_7, r16_8,
+                                              r16_9, r16_10, r16_11, r16_12, r16_13, r16_14, r16_15, r16_16]}
+                                  qfTracks={[qf_1, qf_2, qf_3, qf_4, qf_5, qf_6, qf_7, qf_8]}
+                                  sfTracks={[sf_1, sf_2, sf_3, sf_4]}
+                                  fTracks={[f_1, f_2]}
+                                  champ={c_1}/>}
+                      fileName={`bopbracket-${this.props.artist}.pdf`}>
+                      {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Generate PDF')}
+                    </PDFDownloadLink>
                 : null
               }
             </React.Fragment>
