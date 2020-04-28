@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import BopBracketsFormAndControls from './components/bop-brackets/BopBracketsFormAndControls';
 import BopBracketsHeader from './components/bop-brackets/BopBracketsHeader';
-import PDFBracket from './components/pdf/PDFBracket';
 import FillBracket from './components/fill-in/FillBracket';
 import FillBracketMobile from './components/fill-in-mobile/FillBracketMobile';
 import api, { BASE_URL } from './api/index';
@@ -70,6 +69,7 @@ class App extends Component {
         artist: "",
         topTracks: [],
         errorOccurred: false,
+        orderedMatchups: [],
         bracketMode: ""
       });
     }
@@ -87,7 +87,7 @@ class App extends Component {
               handleStartFromScratch={this.handleStartFromScratch}
               handleModeChange={this.handleModeChange}
               artist={this.state.artist}
-              tracks={this.state.topTracks}
+              matchups={this.state.orderedMatchups}
               errorOccurred={this.state.errorOccurred} />
           </div>
         </CenteredRow>
@@ -104,16 +104,7 @@ class App extends Component {
           this.state.topTracks.length > 0 && this.state.bracketMode === ''
           ? <CenteredRow className='mt-5'>
               <div className='col alert alert-success'>
-                <h4>Your bracket is ready.  Choose an option above to continue.</h4>
-              </div>
-            </CenteredRow>
-          : null      
-        }
-        {
-          this.state.topTracks.length > 0 && this.state.bracketMode === 'printMode'
-          ? <CenteredRow>
-              <div className='col'>
-                <PDFBracket matchups={this.state.orderedMatchups} />
+                <h4>Your bracket is ready.</h4>
               </div>
             </CenteredRow>
           : null      
