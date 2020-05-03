@@ -16,7 +16,7 @@ From that experience, Bop Brackets was born.
 Bop Brackets is a React client which leverages data from a [Last.FM API](https://www.last.fm/api/) call to generate a bracket of 32 songs.  The user can download a blank bracket, or complete one in their browser and download the results.
 
 ### API Call and Bracket Setup
-The Last.FM API operation [artist.getTopTracks](https://www.last.fm/api/show/artist.getTopTracks) returns a list of an artist's tracks, ordered by total listeners.  This accepts a parameter for number of tracks, which here is passed as 32.
+The Last.FM API operation [artist.getTopTracks](https://www.last.fm/api/show/artist.getTopTracks) returns a list of an artist's tracks, ordered by total listeners.  This accepts a parameter for number of tracks, which here is passed as 32.  API call is implemented using [axios](https://github.com/axios/axios)
 
 Functions in [`bracketUtils.js`](https://github.com/zamud/bop-brackets/blob/master/src/utils/bracketUtils.js) mold this data into a seeded bracket:
 * The 32 tracks are each assigned a seed of 1-8.  Top four tracks are 1 seeds, the next four are 2 seeds, and so on.
@@ -54,9 +54,7 @@ On page load, only the "Artist" text box and "Generate Bracket" button are enabl
 </p>
 
 #### 2. Download a Blank Bracket
-On the way to a filled-out PDF bracket is a blank PDF bracket, so it became a feature!  [react-pdf](https://react-pdf.org/) is used to create a bracket layout with the first-round matchup data displayed.  Here is an example, downloaded directly from Bop Brackets:
-
----------------- Blank Pearl Jam Bracket
+On the way to a filled-out PDF bracket is a blank PDF bracket, so it became a feature!  [react-pdf](https://react-pdf.org/) is used to create a bracket layout with the first-round matchup data displayed.  Here is an example, downloaded directly from Bop Brackets: [Blank Pearl Jam Bracket](https://github.com/zamud/bop-brackets/blob/master/public/bopbracket-blank-Pearl%20Jam.pdf)
 
 #### 3. Fill Out in Browser
 A bracketing website wouldn't be complete without the ability to complete a bracket and choose a winner.  This can be done in both desktop and phone browsers with Bop Brackets' mobile responsiveness (acheived with [react-device-detect](https://github.com/duskload/react-device-detect).  In the desktop view, The user fills out the entire bracket on a single page.  Winners are chosen in drop-downs, which remain disabled until both tracks for that matchup have been set:
@@ -67,11 +65,11 @@ A bracketing website wouldn't be complete without the ability to complete a brac
 
 In the mobile view, the user progresses through one round at a time.  Once all picks for a round are complete, the "Next Round" button is enabled, and they can progress.  They may also revisit previous rounds and change their picks:
 
---------------- Mobile Flow Image
+<p align="center">
+  <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/mobile.flow.PNG" alt="Mobile Flow Image">
+</p>
 
-Once a champion is crowned, the "Generate PDF" button becomes available, and the user can download their filled out bracket.  As an example, see my personal Pearl Jam bracket (link to PDF).  At this point, the user can send their results to friends and family for some friendly debate.
-
---------------- Champ card and Generate PDF Button Image
+Once a champion is crowned, the "Generate PDF" button becomes available, and the user can download their filled out bracket.  As an example, see my personal Pearl Jam bracket (link to PDF).  At this point, the user can send their results to friends and family for some friendly debate.  Here's my personal Pearl Jam Bracket, for exmaple: [Completed Pearl Jam Bracket](https://github.com/zamud/bop-brackets/blob/master/public/bopbracket-Pearl%20Jam.pdf)
 
 #### 4. Repeat
 The user may start over at any time.  This will clear out their artist search and any picks they've made, and re-activate the "Artist" text box and "Generate Bracket" button, effectively resetting the app.  This allows users to repeat or restart the process.
@@ -81,3 +79,8 @@ The user may start over at any time.  This will clear out their artist search an
 </p>
 
 ## Future Enhancements
+Some potential enhancements that could make Bop Brackets more robust and entertaining for users:
+* File sharing via text or email through the app, perhaps via [nodemailer](https://nodemailer.com/about/)
+* An option to exclude remixes from the brackets, to prevent "Song Title" vs. "Song Title (Radio Mix)", for example.
+* Allow user to choose the bracket size, while making the existing logic dynamic for various sizes
+* Leverage [Last.FM API](https://www.last.fm/api/) for different types of bracket grouping besides artist (by chart, tag, etc.)
