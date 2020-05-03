@@ -1,7 +1,7 @@
 # Bop Brackets
 React client which builds a seeded, fillable, 32-song bracket of an artist's top tracks using data from the [Last.FM API](https://www.last.fm/api/).
 
-Try it out (it's fun!): http://bop-brackets.herokuapp.com/
+Try it out (it's fun!): <a href="http://bop-brackets.herokuapp.com/" target="_blank">http://bop-brackets.herokuapp.com/</a>
 
 ## The Story
 A friend sent me a PDF bracket of Drake songs to fill out.  I enjoyed listening to some old favorites and crowning a champion, but it was a process.  I downloaded the PDF, loaded it into Paint, inserted a text box for each winner, saved that image... you get the idea.  The experience left me with a few questions:
