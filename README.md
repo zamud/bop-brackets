@@ -25,11 +25,15 @@ Functions in [`bracketUtils.js`](https://github.com/zamud/bop-brackets/blob/mast
 
 For display consistency, [`bracketUtils.js`](https://github.com/zamud/bop-brackets/blob/master/src/utils/bracketUtils.js) contains a function to append the seed and trim long track names.  For example, this Pearl Jam track with a long title was assigned a 6 seed:
 
--------------- Name Format Image
+<p align="center">
+  <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/title-format.PNG" alt="Formatting Title Image">
+</p>
 
 When all is said and done, there will be a seeded 32 track bracket, which four regions like this:
 
--------------- Region Image
+<p align="center">
+  <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/sample-region.PNG" alt="Sample Region Image">
+</p>
 
 ### User Interface
 With the data fetched and bracket organized, it was time to create the user experience.  The flow was kept simple, and on a single page:
@@ -38,12 +42,16 @@ With the data fetched and bracket organized, it was time to create the user expe
 3. Fill out in the browser and download completed bracket
 4. Repeat
 
---------------- Homepage Image
+<p align="center">
+  <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/homepage.PNG" alt="Homepage Image">
+</p>
 
 #### 1. Enter Artist, Generate Bracket
 On page load, only the "Artist" text box and "Generate Bracket" button are enabled.  The user can search for any artist (not case sensitive) and click the button.  If the artist name is invalid or there was another error, the user is prompted to try again.  If the API call is successful, the bracket is built and a success message displays.  The "Artist" and "Generate Brackets" elements are disabled, and the other controls come alive.
 
----------------- Search Results Image
+<p align="center">
+  <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/search-results.PNG" alt="Search Results Image">
+</p>
 
 #### 2. Download a Blank Bracket
 On the way to a filled-out PDF bracket is a blank PDF bracket, so it became a feature!  [react-pdf](https://react-pdf.org/) is used to create a bracket layout with the first-round matchup data displayed.  Here is an example, downloaded directly from Bop Brackets:
@@ -53,7 +61,9 @@ On the way to a filled-out PDF bracket is a blank PDF bracket, so it became a fe
 #### 3. Fill Out in Browser
 A bracketing website wouldn't be complete without the ability to complete a bracket and choose a winner.  This can be done in both desktop and phone browsers with Bop Brackets' mobile responsiveness (acheived with [react-device-detect](https://github.com/duskload/react-device-detect).  In the desktop view, The user fills out the entire bracket on a single page.  Winners are chosen in drop-downs, which remain disabled until both tracks for that matchup have been set:
 
---------------- In Progress Pearl Jam Bracket Image
+<p align="center">
+  <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/pearl-jam-in-progress.PNG" alt="Bracket In Progress Image">
+</p>
 
 In the mobile view, the user progresses through one round at a time.  Once all picks for a round are complete, the "Next Round" button is enabled, and they can progress.  They may also revisit previous rounds and change their picks:
 
@@ -66,6 +76,8 @@ Once a champion is crowned, the "Generate PDF" button becomes available, and the
 #### 4. Repeat
 The user may start over at any time.  This will clear out their artist search and any picks they've made, and re-activate the "Artist" text box and "Generate Bracket" button, effectively resetting the app.  This allows users to repeat or restart the process.
 
---------------- Start from Scratch Image
+<p align="center">
+  <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/start-from-scratch.PNG" alt="Start From Scratch Image">
+</p>
 
 ## Future Enhancements
