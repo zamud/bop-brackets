@@ -39,6 +39,8 @@ class FillBracket extends Component {
       case 'c':
         newTracks = this.state.c;
         break;
+      default:
+        break;
     }
     newTracks[index] = event.target.value;
     this.setState({
@@ -55,7 +57,6 @@ class FillBracket extends Component {
   render() {
     const {matchups} = this.props;
     const {r16, qf, sf, f, c} = this.state;
-    console.log(this.state);
 
     return (
       <div className='container'>
