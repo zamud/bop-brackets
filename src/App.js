@@ -5,14 +5,8 @@ import FillBracket from './components/fill-in/FillBracket';
 import FillBracketMobile from './components/fill-in-mobile/FillBracketMobile';
 import api, { BASE_URL } from './api/index';
 import bracketUtils from './utils/bracketUtils';
-import styled from 'styled-components';
+import styleUtils from './utils/styleUtils';
 import { BrowserView, MobileView } from 'react-device-detect';
-
-const CenteredRow = styled.div.attrs({
-  className: 'row',
-})`
-  text-align: center
-`
 
 class App extends Component {
   constructor(props) {
@@ -79,7 +73,7 @@ class App extends Component {
     return (
       <div className='container pt-2'>
         <BopBracketsHeader />
-        <CenteredRow className='mt-4 mb-4'>
+        <styleUtils.CenteredRow className='mt-4 mb-4'>
           <div className='col'>
             <BopBracketsFormAndControls 
               handleSubmit={this.handleSubmit}
@@ -90,23 +84,23 @@ class App extends Component {
               matchups={this.state.orderedMatchups}
               errorOccurred={this.state.errorOccurred} />
           </div>
-        </CenteredRow>
+        </styleUtils.CenteredRow>
         {
           this.state.topTracks.length === 0 && this.state.bracketMode === ''
-          ? <CenteredRow className='mt-5'>
+          ? <styleUtils.CenteredRow className='mt-5'>
               <div className='col alert alert-secondary'>
                 <h4>Welcome to Bop Brackets.  Enter an artist and generate a bracket to start.</h4>
               </div>
-            </CenteredRow>
+            </styleUtils.CenteredRow>
           : null      
         }
         {
           this.state.topTracks.length > 0 && this.state.bracketMode === ''
-          ? <CenteredRow className='mt-5'>
+          ? <styleUtils.CenteredRow className='mt-5'>
               <div className='col alert alert-success'>
                 <h4>Your bracket is ready.</h4>
               </div>
-            </CenteredRow>
+            </styleUtils.CenteredRow>
           : null      
         }
         {

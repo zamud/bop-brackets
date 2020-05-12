@@ -28,11 +28,18 @@ const FinalCol = styled.div.attrs({
   margin-left: 0px !important
   margin-right: 0px !important`
 
+const CenteredRow = styled.div.attrs({
+  className: 'row',
+})`
+  text-align: center
+`
+
 const styleUtils = {
   SecondRoundCol,
   ThirdRoundCol,
   FourthRoundCol,
-  FinalCol
+  FinalCol,
+  CenteredRow
 };
 
 export default styleUtils;

@@ -1,25 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const CenteredRow = styled.div.attrs({
-  className: 'row',
-})`
-  text-align: center
-`
+import styleUtils from '../../utils/styleUtils';
 
 const BopBracketsHeader = () => {
   return (
     <div>
-      <CenteredRow>
+      <styleUtils.CenteredRow>
         <div className='col'>
           <h2>Bop Brackets</h2>
         </div>
-      </CenteredRow>
-      <CenteredRow>
+      </styleUtils.CenteredRow>
+      <styleUtils.CenteredRow>
         <div className='col'>
           <strong>Enter an artist.  Build a bracket.  Crown the top track.</strong>
         </div>
-      </CenteredRow>
+      </styleUtils.CenteredRow>
     </div>
   )
 }
