@@ -69,7 +69,7 @@ In the mobile view, the user progresses through one round at a time.  Once all p
   <img src="https://github.com/zamud/bop-brackets/blob/master/public/img/mobile.flow.PNG" alt="Mobile Flow Image">
 </p>
 
-Once a champion is crowned, the "Generate PDF" button becomes available, and the user can download their filled out bracket.  At this point, the user can send their results to friends and family for some friendly debate.  Here's my personal Pearl Jam Bracket, for exmaple: [Completed Pearl Jam Bracket](https://github.com/zamud/bop-brackets/blob/master/public/bopbracket-Pearl%20Jam.pdf)
+Once a champion is crowned, the "Generate PDF" button becomes available, and the user can download their filled out bracket.  At this point, the user can send their results to friends and family for some friendly debate.  Here's my personal Pearl Jam Bracket, for example: [Completed Pearl Jam Bracket](https://github.com/zamud/bop-brackets/blob/master/public/bopbracket-Pearl%20Jam.pdf)
 
 #### 4. Repeat
 The user may start over at any time.  This will clear out their artist search and any picks they've made, and re-activate the "Artist" text box and "Generate Bracket" button, effectively resetting the app.  This allows users to repeat or restart the process.
